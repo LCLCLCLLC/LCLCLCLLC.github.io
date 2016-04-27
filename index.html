@@ -1,1 +1,434 @@
-hello world
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>主页</title>
+<style>
+*{
+	margin:0;
+    padding:0;
+	}
+a{
+	text-decoration:none;
+	color: #FFF;
+	}
+body{
+	background-image:url(image/3.jpg);
+	background-size:100% 100%;
+	-moz-background-size:100% 100%; 
+    background-repeat:no-repeat;
+	font-size:62.5%;
+	}
+#touxiang{
+	width:10%;
+	height:10%;
+	background-image:url(image/%E5%A4%B4%E5%83%8F1.jpg);
+	background-size:100% 100%;
+	-moz-background-size:100% 100%; 
+    background-repeat:no-repeat;
+	border-top-left-radius:50%;
+    border-top-right-radius:50%;
+	filter:alpha(opacity=50); 
+    -moz-opacity:0.5; 
+    opacity:0.5;
+	position:absolute;
+	left:20%;
+	top:15%;
+	}
+.my{
+	width:60%;
+	height:40%;
+	position:absolute;
+	top:25%;
+	left:20%;
+	overflow: hidden;
+    }
+
+#header{
+	width:100%;
+	height:5%;
+	filter:alpha(opacity=50); 
+    -moz-opacity:0.5; 
+    opacity:0.5;
+	background-color: #666;
+	}
+#tishou{
+	width:10%;
+	height:100%;
+	text-align:center;
+	font-size:20px;
+	padding-top:9px;
+	}
+#wenzi1,#wenzi2  p{
+		color:#FFF;
+		font-size: xx-large;
+		}
+#wenzi1{
+	height:20%;
+	width:5%;
+	position:absolute;
+	right:6%;
+	top:28%;
+	}
+#wenzi2{
+	height:20%;
+	width:5%;
+	position:absolute;
+	right:2%;
+	top:40%;
+	}
+.man{
+	width:100%;
+	height:100%;
+	}
+.big_pic li{
+	width:100%;
+	height:100%;
+	list-style:none;
+	float: left;
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:20px;
+	color:#CCC;
+	text-align:center;
+	z-index: 0;
+	}
+.mark_left{
+	width:30%;
+	height:40%;
+	position:absolute;
+	top:25%;
+	left:20%;
+	background: red; filter: alpha(opacity:0); opacity:0; z-index:3000;
+	}
+.mark_right{
+	width:30%;
+	height:40%;
+	position:absolute;
+	top:25%;
+	left:50%;
+	background: green; filter: alpha(opacity:0); opacity:0; z-index:3000;
+	}
+.prev{
+	width:60px;
+	height:60px;
+	background: no-repeat url(image/btn.gif);
+	position:absolute;
+	top:40%;
+	left:23%;
+	filter:alpha(opacity:0);
+	opacity:0;
+	z-index: 3001;
+	}
+.next{
+	width:60px;
+	height:60px;
+	background: url(image/btn.gif) no-repeat 0 -60px;
+	position:absolute;
+	right:23%;
+	top:40%;
+	filter:alpha(opacity:0);
+	opacity:0;
+	z-index: 3001;
+	}
+.small_pic{
+	width:20%;
+	height:5%;
+	position:absolute;
+	top:65%;
+	left:40%;
+	}
+.small_pic li{
+	float:left;
+	list-style:none;
+	background-color:#FFF;
+	width:15%;
+	height:50%;
+	margin-left:13%;
+	margin-top:4%;
+	}
+#my1{
+	background-color:#00F;
+	background-image: url(image/beijing.jpg);
+	background-size:100% 100%;
+	-moz-background-size:100% 100%; 
+    background-repeat:no-repeat;
+	}
+#my2{
+	background-color:#000;
+	}
+#my3{
+	background-color:#000;
+	}
+#shoufengqian{
+	width:10%;
+	height:40%;
+	position:absolute;
+	top:25%;
+	overflow:hidden;
+	}
+#shoufengqian .sfq-ti{
+	height:10%;
+	width:100%;
+	border-bottom:solid;
+	background-color:#CCC;
+	border-color:#000;
+	text-align:center;
+	font-size:20px;
+	}
+.menu_body{
+	width:100%;
+	height:69%;
+	background-color:#FFF;
+	filter:alpha(opacity=40); 
+    -moz-opacity:0.4; 
+    opacity:0.4;
+	font-size:0.5em;
+	}
+footer{
+	width:60%;
+	height:10%;
+	position:absolute;
+	bottom:0px;
+	left:20%;
+	color:#FFF;
+	font-size:small;
+	text-align:center;
+	}
+</style>
+<script src="jquery-2.0.3.js"></script>
+<script src="move.js"></script>
+<script>
+function getByClass(oParent,sClass){
+	var aEle=document.getElementsByTagName("*");
+	var i=0;
+	var aResult=[];
+	for(i=0;i<aEle.length;i++){
+		if(aEle[i].className==sClass){
+			aResult.push(aEle[i]);
+			}
+		}
+		return aResult;
+	}
+	
+$(function(){
+	
+	$(window).resize();
+	
+	$("#shoufengqian .sfq-ti").mouseover(function(){
+		$(this).next("div.menu_body").slideDown(300).siblings("div.menu_body").slideUp("300");
+	});
+	
+	 var oDiv=document.getElementsByTagName('body');
+	 var oBtnPrev=getByClass(oDiv, 'prev')[0];
+	 var oBtnNext=getByClass(oDiv, 'next')[0];
+	 var oMarkLeft=getByClass(oDiv, 'mark_left')[0];
+	 var oMarkRight=getByClass(oDiv, 'mark_right')[0];
+	 
+	 var oSmallUl = getByClass(oDiv, 'small_pic')[0].getElementsByTagName('ul')[0];
+	 var aSmallLi= oSmallUl.getElementsByTagName('li');
+	 var oBigUl = getByClass(oDiv, 'man big_pic')[0];
+	 var aBigLi= oBigUl.getElementsByTagName('li');
+	 
+	 var i=0;
+	 var iNow=0;
+	 var iMinZindex=2;
+	
+	 oBtnPrev.onmouseover=oMarkLeft.onmouseover=function(){
+		 startMove(oBtnPrev,'opacity',100);
+		 }
+	 oBtnPrev.onmouseout=oMarkLeft.onmouseout=function(){
+		startMove(oBtnPrev,'opacity',0);
+		}
+	 oBtnNext.onmouseover=oMarkRight.onmouseover=function(){
+		 startMove(oBtnNext,'opacity',100);
+		 }
+	 oBtnNext.onmouseout=oMarkRight.onmouseout=function(){
+		startMove(oBtnNext,'opacity',0);
+		}
+		
+		 for(i=0;i<aSmallLi.length;i++){
+		 aSmallLi[i].index=i;
+		 aSmallLi[i].onmouseover=function()
+		 {
+			 startMove(this,'opacity',100);
+			 }
+		 aSmallLi[i].onmouseout=function()
+		 {
+			 if(this.index!=iNow)
+			 {
+			  startMove(this,'opacity',60);
+				 }
+			 }
+		aSmallLi[i].onclick=function()
+	   {
+		 if(this.index==iNow){retrun;}
+		iNow=this.index;
+		tab();
+		}
+		
+		  function tab(){
+		   for(i=0;i<aSmallLi.length;i++){
+			startMove(aSmallLi[i], 'opacity' ,60);
+			}
+		startMove(aSmallLi[iNow],'opacity',100);
+		
+		aBigLi[iNow].style.zIndex=iMinZindex++;
+		aBigLi[iNow].style.height=0;
+		
+		startMove(aBigLi[iNow],'height',oBigUl.offsetHeight);
+		if(iNow==0)
+		{
+			startMove(oSmallUl,'left',0);
+			}else if(iNow==aSmallLi.length-1)
+			{
+				startMove(oSmallUl,'left',-(iNow-2)*aSmallLi[0].offsetWidth);
+				}else
+			{
+				startMove(oSmallUl,'left',-(iNow-1)*aSmallLi[0].offsetWidth);
+				}
+		   }
+		   
+		   oBtnPrev.onclick=function()
+	   {
+		 iNow--;
+		 if(iNow==-1){iNow=aSmallLi.length-1;}
+		tab();
+		}
+		oBtnNext.onclick=function()
+	   {
+		 iNow++;
+		 if(iNow==aSmallLi.length){iNow=0;}
+		tab();
+		}
+	   }
+		
+});
+
+$(window).resize(function(){ 
+    var browser_width = $(document).outerWidth(true);
+	var browser_height = $(document).outerHeight(true);
+    $("body").css("width",browser_width); 
+	$("body").css("height",browser_height); 
+	$("body").css("overflow",'hidden');
+}); 
+
+</script>
+</head>
+
+<body>
+ <div id="header">
+ <div id="tishou">
+   <a href="#">首页</a>
+ </div>
+ </div>
+ 
+ <div class="prev"></div>
+ <div class="next"></div>
+ <a class="mark_left" href="javascript:;"></a>
+ <a class="mark_right" href="javascript:;"></a>
+ 
+ <div id="touxiang"></div>
+ 
+ <div class="my">
+    <ul class="man big_pic">
+    <li style="z-index:1;">
+    <div id="my1" class="man">
+    <h2>技术概览</h2>
+    <p>html熟悉，html5懂得部分兼容的标签</p>
+    <p>css熟悉，css3熟悉</p>
+    <p>javascript会写能看，细节部分不太懂</p>
+    <p>jquery能用会写，但还没来得及深入研究</p>
+    <p>java基础扎实</p>
+    <p>servlet,http协议，jsp和数据库，el表达式都会一些</p>
+    </div>
+    </li>
+    <li>
+    <div id="my2" class="man" style="font-size:15px;">
+     <h2>学习经历</h2>
+     <p>在学校的时候曾自学java，所以对此比较感兴趣，毕业后决定选择了一家培训机构学习</p>
+     <p>因为学的是java培训班，所以对java基础，servlet，jsp，数据库等后台相关的内容都</p>
+     <p>会一些，并有自己在tomcat的一个小项目，但在学习当中感觉前端貌似更有趣，然后就</p>
+     <p>入坑了，前端技术中html与css不说精通，基本上懂大部分，JavaScript基础也扎实，</p>
+     <p>就是细节方面有许多要学习的，会bootstrap的简单应用，会简单的Photoshop页面绘图</p>
+     <p>这个个人博客是本人写的一个代码挺乱的一个页面，希望自己以后能编写优雅的而简洁</p>
+     <p>的代码。</p>
+     </div>
+    </li>
+    <li>
+    <div id="my3" class="man">
+    <h2>暂无。。。。</h2>
+    <p>ps:字体自适应不用bootstrap真的好烦</p>
+    </div>
+    </li>
+    </ul>
+ </div>
+ <div id="wenzi1">
+ <p>给</p> <p>的</p> <p>再</p> <p>多</p>
+ </div>
+ <div id="wenzi2">
+ <p>不</p> <p>如</p> <p>懂</p> <p>你</p>
+ </div>
+ 
+  </div>
+  
+  <div class="small_pic">
+        <ul class="man">
+            <li style="filter: 100; opacity: 1;"><div class="small_div"></div></li>
+            <li><div class="small_div"></div></li>
+            <li><div class="small_div"></div></li>
+        </ul>
+   </div>
+   
+    <div id="shoufengqian"> 
+   
+    <div class="sfq-ti"><p>基本资料</p></div>
+    <div style="display:block" class="menu_body">
+    <p>姓名：罗成</p>
+    <p>性别：男</p>
+    <p>年龄：22</p>
+    <p>籍贯：河源</p>
+    <p>学历：大专</p>
+    <p>学校：</p>
+    <p>河源职业技术学院</p>
+    <p>专业:</p>
+    <p>移动通信专业</p>
+    </div>
+    
+    <div class="sfq-ti"><p>就职经历</p></div>
+    <div style="display:none" class="menu_body">
+    <p>15届毕业生</p>
+    <p>2015.1</p>
+    <p>手机维修实习</p>
+    <p>2015.3</p>
+    <p>宽带安装维护</p>
+    <p>2015.7</p>
+    <p>客服</p>
+    <p>2015.12</p>
+    <p>java后台培训</p>
+    </div>
+   
+    <div class="sfq-ti"><p>薪资待遇</p></div>
+    <div style="display:none" class="menu_body">
+    <p>有大神带</p>
+    <p>能快速成长</p>
+    <p>有住的？</p>
+    <p>有我口吃的</p>
+    <p>做多少拿多少</p>
+    <p>0.0</p>
+    </div>
+    
+    </div>
+    
+    <footer>
+    <hr>
+    <p>一个静等被带走的小白</p>
+    <p>别说话，带我飞</p>
+    <p>手机号码：15697622731</p>
+    <p>邮箱：67585282@qq.com</p>
+    </footer>
+    
+
+</body>
+</html>
